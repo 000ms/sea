@@ -28,12 +28,11 @@ Templates are a powerful C++ feature that allow for the creation of flexible, re
 ```c
 /*
 ::  ## ISO C
-::      Lists are implemented with data as void pointer
-::      giving responsability to the user to cast it
-::      into the appropriate type
+::      Lists are giving responsability to the user to cast the data
+::      into the appropriate type and to free the memory.
 
 ::  ## GNU C
-::      Using generics the data field is typed
+::      Lists are scoped and typed.
 */
 
 #include <experimental/list.h>
@@ -41,65 +40,34 @@ Templates are a powerful C++ feature that allow for the creation of flexible, re
 #include <stdio.h>
 
 typedef struct
-    {
+{
     int x;
     int y;
-    }
+}
     Point;
 
-listof(Point) *(createpoints)(void)
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-    {
-    autolist points = allocatelistof(Point);
+$ListOf(Point) * (create_points)(void)
+{
+    $list points = $_list_new(Point);
 
     for (int i = 10; i --> 0;)
-        {
-        autotype p = listprepend(points);
+    {
+        $auto p = $_(points, prepend);
         p->data.x = p->data.y = i;
-        }
-
-    return moveraw(points);
     }
 
-int (main)(void)
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-    {
-    autolist points = createpoints();
+    return $_memory_move_raw(points);
+}
 
-    for (autotype next = listforward(points); next; next = listforward(points))
+int (main)(void)
+{
+    $list points = create_points();
+
+    for ($auto next = $_(points, forward); next; next = $_(points, forward))
         printf("(%i, %i) ", next->data.x, next->data.y);
 
     printf("\n");
 
     return EXIT_SUCCESS;
-    }
-```
-
-```c
-/*
-::  ##  Reads a directory
-::      Builds an array with the element's names
-
-::  __  [note] The built array length equals the count of found elements
-
-::  __  [note] This demonstrates how to return a VLA
-::             using generics with a scalar parameter
-*/
-
-#include <experimental/directory.h>
-
-#include <stdio.h>
-
-int (main)(void)
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-    {
-    autotype tab = directorynames(".");
-
-    for (size_t i = 0; i < arraysize(*tab); i++)
-        printf("%s\n", (*tab)[i]);
-
-    directorynamesfree(tab);
-
-    return EXIT_SUCCESS;
-    }
+}
 ```
