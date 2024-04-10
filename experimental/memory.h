@@ -23,17 +23,39 @@
 #include <iso646.h>
 #include <stdlib.h>
 
+#if not defined(__GNUC__)
+#   include <experimental/ requires gnu c compiler (gcc, clang)>
+#endif
+
+#if defined(__clang__)
+#   if __has_extension(blocks)
+#       define $function(_prototype_)                                           \
+            typeof(typeof(_prototype_) ^)
+
+#       define $_function(_return_, _block_)                                    \
+            (^ typeof(_return_) _block_)
+#   else
+#       include <experimental/ clang may require flag (-fblocks)>
+#   endif
+#else
+#   define $function(_prototype_)                                               \
+        typeof(typeof(_prototype_) *)
+
+#   define $_function(_return_, _block_)                                        \
+        ({typeof(_return_) _ _block_ _;})
+#endif
+
 #define $_(_object_, _method_, ...)                                             \
-    (_object_->_method_(_object_ __VA_OPT__(,) __VA_ARGS__))
+    (_object_->_method_(_object_, ##__VA_ARGS__))
 
 #define $auto                                                                   \
     __auto_type
 
 #define $scoped(_callback_)                                                     \
-    __attribute__((cleanup(_callback_)))
+    [[gnu::cleanup(_callback_)]]
 
-#define $autofree                                                               \
-    $auto $scoped($_memory_free)
+#define $free                                                                   \
+    $scoped($_memory_free) $auto
 
 #define $_memory_new(_object_)                                                  \
     ((typeof(_object_) *)($_memory_new)(sizeof(_object_)))
@@ -46,9 +68,6 @@
 
 #define $_memory_free(_pointer_)                                                \
     (($_memory_free)(&_pointer_))
-
-#define $_function(_return_, _block_)                                           \
-    ({typeof(_return_) _ _block_ _;})
 
 #define $_array_last(_array_)                                                   \
     ($_array_size(_array_) - 1)

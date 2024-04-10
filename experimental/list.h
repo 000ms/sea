@@ -68,17 +68,9 @@ void ($_link_set_backward)($Link *source, $Link *destination)
 
 //▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
-#define $_list_new(_object_)                                                    \
-({                                                                              \
-    $ListOf(_object_) dummy;                                                    \
-    $auto instance = $_memory_new(dummy);                                       \
-    $_list_init(instance);                                                      \
-    instance;                                                                   \
-})
-
 #define $ListOf(_object_)                                                       \
     typeof                                                                      \
-    (                                                                           \
+(                                                                               \
     struct $Head                                                                \
     {                                                                           \
         $Link super;                                                            \
@@ -91,15 +83,23 @@ void ($_link_set_backward)($Link *source, $Link *destination)
         }                                                                       \
             *iterator;                                                          \
                                                                                 \
-        size_t         (*size)    (struct $Head *);                             \
-        void           (*reset)   (struct $Head *);                             \
-        struct $Node * (*forward) (struct $Head *);                             \
-        struct $Node * (*backward)(struct $Head *);                             \
-        struct $Node * (*append)  (struct $Head *);                             \
-        struct $Node * (*prepend) (struct $Head *);                             \
-        struct $Node * (*extract) (struct $Head *);                             \
+        $function(size_t         (struct $Head *)) size;                        \
+        $function(void           (struct $Head *)) reset;                       \
+        $function(struct $Node * (struct $Head *)) forward;                     \
+        $function(struct $Node * (struct $Head *)) backward;                    \
+        $function(struct $Node * (struct $Head *)) append;                      \
+        $function(struct $Node * (struct $Head *)) prepend;                     \
+        $function(struct $Node * (struct $Head *)) extract;                     \
     }                                                                           \
-    )
+)
+
+#define $_list_new(_object_)                                                    \
+({                                                                              \
+    $ListOf(_object_) dummy;                                                    \
+    $auto instance = $_memory_new(dummy);                                       \
+    $_list_init(instance);                                                      \
+    instance;                                                                   \
+})
 
 #define $_list_init(_head_)                                                     \
 ({                                                                              \
@@ -161,7 +161,7 @@ void ($_link_set_backward)($Link *source, $Link *destination)
         else                                                                    \
             $_link_set_backward(               head , node                );    \
         $_link_set_forward(head, node);                                         \
-        return  (head->length ++, node);                                        \
+        return (head->length ++, node);                                         \
     });                                                                         \
                                                                                 \
     instance->extract = $_function($Node *, ($Head *head)                       \
@@ -189,7 +189,7 @@ void ($_link_set_backward)($Link *source, $Link *destination)
     instance;                                                                   \
 })
 
-#define $list $auto $scoped($_list_free)
+#define $list $scoped($_list_free) $auto
 
 static inline //----------------------------------------------------------------
 void ($_list_free)(void *reference)
