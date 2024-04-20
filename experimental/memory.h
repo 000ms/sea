@@ -45,6 +45,9 @@
         ({typeof(_return_) _ _block_ _;})
 #endif
 
+#define $(_object_)                                                             \
+    (_object_->data)
+
 #define $_(_object_, _method_, ...)                                             \
     (_object_->_method_(_object_, ##__VA_ARGS__))
 

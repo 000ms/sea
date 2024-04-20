@@ -24,8 +24,8 @@ $ListOf(Point) * (create_points)(void)
 
     for (int i = 10; i --> 0;)
     {
-        $auto p = $_(points, prepend);
-        p->data.x = p->data.y = i;
+        $auto point = $_(points, prepend);
+        $(point).x = $(point).y = i;
     }
 
     return $_memory_move_raw(points);
@@ -36,7 +36,7 @@ int (main)(void)
     $list points = create_points();
 
     for ($auto next = $_(points, forward); next; next = $_(points, forward))
-        printf("(%i, %i) ", next->data.x, next->data.y);
+        printf("(%i, %i) ", $(next).x, $(next).y);
 
     printf("\n");
 
