@@ -85,23 +85,11 @@
     (sizeof(_array_) / sizeof(_array_[0]));                                     \
 })
 
-#define $_assert(_condition_, _message_)                                        \
-({                                                                              \
-    static_assert                                                               \
-        (   __builtin_constant_p                                                \
-                (_message_)                                                     \
-        and __builtin_types_compatible_p                                        \
-                (typeof(_message_), typeof(char[sizeof(_message_)]))            \
-        , "$_assert requires a string literal message)"                         \
-        );                                                                      \
-    (not (_condition_) ? assert(not _message_) : (void)0);                      \
-})
-
 static inline //----------------------------------------------------------------
 void * ($_memory_new)(size_t size)
 {
     void *object = calloc(1, size);
-    $_assert(object, "$_memory_new allocation failure");
+    assert(object);
     return object;
 }
 
