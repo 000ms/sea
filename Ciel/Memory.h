@@ -16,8 +16,8 @@
 ░░ PERFORMANCE OF THIS SOFTWARE.
 */
 
-#ifndef EXPERIMENTAL_MEMORY_H
-#define EXPERIMENTAL_MEMORY_H
+#ifndef CIEL_MEMORY_H
+#define CIEL_MEMORY_H
 
 #include <assert.h>
 #include <iso646.h>
