@@ -23,7 +23,7 @@ This is the C++ technique to call destructors, and a similar mechanism can be ac
 
 Templates are a powerful C++ feature that allow for the creation of flexible, reusable source. With it, developers can write code that works with a variety of data types, rather than having to repeat boilerplate blocks. This reduces duplication and improves maintainability. Again, it can be achieved with GNU C.
 
-## Examples
+## Example
 
 ```c
 /*
