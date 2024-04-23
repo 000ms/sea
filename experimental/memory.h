@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 #if not defined(__GNUC__)
-#   include <experimental/ requires gnu c compiler (gcc, clang)>
+#   include <requires gnu c compiler (gcc, clang)>
 #endif
 
 #if defined(__clang__)
@@ -35,7 +35,7 @@
 #       define $_function(_return_, _block_)                                    \
             (^ typeof(_return_) _block_)
 #   else
-#       include <experimental/ clang may require flag (-fblocks)>
+#       include <clang may require flag (-fblocks)>
 #   endif
 #else
 #   define $function(_prototype_)                                               \
@@ -64,10 +64,10 @@
     ((typeof(_object_) *)($_memory_new)(sizeof(_object_)))
 
 #define $_memory_move(_pointer_)                                                \
-    ((typeof(_pointer_))$_memory_move_raw(_pointer_))
+    (($_memory_move)(&_pointer_))
 
-#define $_memory_move_raw(_pointer_)                                            \
-    (($_memory_move_raw)(&_pointer_))
+#define $_memory_move_with_type(_pointer_)                                      \
+    ((typeof(_pointer_))$_memory_move(_pointer_))
 
 #define $_memory_free(_pointer_)                                                \
     (($_memory_free)(&_pointer_))
@@ -94,7 +94,7 @@ void * ($_memory_new)(size_t size)
 }
 
 static inline //----------------------------------------------------------------
-void * ($_memory_move_raw)(void *reference)
+void * ($_memory_move)(void *reference)
 {
     void **giver = reference;
     void  *taker = NULL;

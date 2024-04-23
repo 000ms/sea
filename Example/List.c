@@ -7,7 +7,7 @@
 ::      Lists are scoped and typed.
 */
 
-#include <experimental/list.h>
+#include <Experimental/List.h>
 
 #include <stdio.h>
 
@@ -28,7 +28,7 @@ $ListOf(Point) * (create_points)(void)
         $(point).x = $(point).y = i;
     }
 
-    return $_memory_move_raw(points);
+    return $_memory_move(points);
 }
 
 int (main)(void)

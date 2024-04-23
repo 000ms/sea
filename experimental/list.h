@@ -19,7 +19,7 @@
 #ifndef EXPERIMENTAL_LIST_H
 #define EXPERIMENTAL_LIST_H
 
-#include <experimental/memory.h>
+#include <Experimental/Memory.h>
 
 typedef struct $Link
 {
@@ -69,8 +69,6 @@ void ($_link_set_backward)($Link *source, $Link *destination)
 //▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 #define $ListOf(_object_)                                                       \
-    typeof                                                                      \
-(                                                                               \
     struct $Head                                                                \
     {                                                                           \
         $Link super;                                                            \
@@ -90,23 +88,22 @@ void ($_link_set_backward)($Link *source, $Link *destination)
         $function(struct $Node * (struct $Head *)) append;                      \
         $function(struct $Node * (struct $Head *)) prepend;                     \
         $function(struct $Node * (struct $Head *)) extract;                     \
-    }                                                                           \
-)
+    }
 
 #define $_list_new(_object_)                                                    \
 ({                                                                              \
-    $ListOf(_object_) dummy;                                                    \
-    $auto instance = $_memory_new(dummy);                                       \
+    $ListOf(_object_) type;                                                     \
+    $auto instance = $_memory_new(type);                                        \
     $_list_init(instance);                                                      \
     instance;                                                                   \
 })
 
 #define $_list_init(_head_)                                                     \
 ({                                                                              \
-    $auto dummy = _head_;                                                       \
+    $auto head = _head_;                                                        \
                                                                                 \
-    typedef typeof(*dummy)           $Head;                                     \
-    typedef typeof(*dummy->iterator) $Node;                                     \
+    typedef typeof(*head)           $Head;                                      \
+    typedef typeof(*head->iterator) $Node;                                      \
                                                                                 \
     instance->size = $_function(size_t, ($Head *head)                           \
     {                                                                           \

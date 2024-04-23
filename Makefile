@@ -16,19 +16,19 @@
 
 CC := gcc
 
-SOURCES := demo/list.c
-PROGRAM := demolist
+SOURCES := Example/List.c
+PROGRAM := XList
 
 .RECIPEPREFIX := >
-.PHONY        := list clean
+.PHONY        := test clean
 
-exe :
-> $(CC) -I. -o $(PROGRAM) $(SOURCES)
+compile :
+> $(info ...compiling $(PROGRAM))$(CC) -I. -o $(PROGRAM) $(SOURCES)
 
-all :| clean exe;
-
-list :
-> $(if $(wildcard $(PROGRAM)),$(info ...executing $(PROGRAM))@./$(PROGRAM))
+test :
+> $(if $(wildcard $(PROGRAM)),$(info ...executing $(PROGRAM))./$(PROGRAM))
 
 clean :
-> $(if $(wildcard $(PROGRAM)),$(info ...removing  $(PROGRAM))@rm -f $(PROGRAM))
+> $(if $(wildcard $(PROGRAM)),$(info ...removing  $(PROGRAM))rm -f $(PROGRAM))
+
+all :| clean compile test;
