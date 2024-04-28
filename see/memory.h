@@ -71,5 +71,5 @@ void (destroy) (pointer (void) p)
 {
     pointer (pointer (void)) pp = p;
     if (pp)
-        free(*pp), *pp = NULL;
+        free (*pp), *pp = NULL;
 }
