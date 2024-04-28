@@ -54,7 +54,7 @@ typedef struct
 │                    (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)                    │
 └──────────────────────────────────────────────────────────────────────────────*/
 
-pointer (ListOf (Point)) (create_points) (void)
+pointer (ListOf (Point)) (createpoints) (void)
 {
     list points = allocatelistof (Point);
 
@@ -64,7 +64,7 @@ pointer (ListOf (Point)) (create_points) (void)
         (*point).data.x = (*point).data.y = i;
     }
 
-    return move(points);
+    return move (points);
 }
 
 /*──────────────────────────────────────────────────────────────────────────────┐
@@ -73,14 +73,14 @@ pointer (ListOf (Point)) (create_points) (void)
 
 int (main) (void)
 {
-    list points = create_points();
+    list points = createpoints ();
 
     for (inferred next = invoke (points, forward);
                   next;
                   next = invoke (points, forward))
-        printf("(%i, %i) ", (*next).data.x, (*next).data.y);
+        printf ("(%i, %i) ", (*next).data.x, (*next).data.y);
 
-    printf("\n");
+    printf ("\n");
 
     return EXIT_SUCCESS;
 }
