@@ -18,8 +18,8 @@
 
 CC := gcc
 
-SOURCES := example/list.c
-PROGRAM := SEEList
+SOURCES := demo/list.c
+PROGRAM := demolist
 
 .RECIPEPREFIX := >
 .PHONY        := test clean
