@@ -21,7 +21,7 @@
 #include <see/memory.h>
 
 /*──────────────────────────────────────────────────────────────────────────────┐
-│                    a join from something to something else                    │
+│                      base type for bi-oriented sequences                      │
 └──────────────────────────────────────────────────────────────────────────────*/
 
 typedef struct Join
