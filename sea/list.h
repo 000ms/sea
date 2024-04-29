@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <see/join.h>
+#include <sea/join.h>
 
 /*──────────────────────────────────────────────────────────────────────────────┐
 │                                 generic list                                  │

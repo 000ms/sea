@@ -18,7 +18,7 @@
 
 #pragma once
 
-#include <see/memory.h>
+#include <sea/memory.h>
 
 /*──────────────────────────────────────────────────────────────────────────────┐
 │                      base type for bi-oriented sequences                      │
