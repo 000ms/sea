@@ -35,7 +35,7 @@ Templates are a powerful C++ feature that allow for the creation of flexible, re
 │   Lists are scoped and typed.                                                 │
 └──────────────────────────────────────────────────────────────────────────────*/
 
-#include <see/list.h>
+#include <sea/list.h>
 #include <stdio.h>
 
 /*──────────────────────────────────────────────────────────────────────────────┐
