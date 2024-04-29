@@ -50,7 +50,7 @@ typedef struct
     Point;
 
 /*──────────────────────────────────────────────────────────────────────────────┐
-│     create a list of ten points initialized with their respective indexes     │
+│    creates a list of ten points initialized with their respective indexes     │
 │                    (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)                    │
 └──────────────────────────────────────────────────────────────────────────────*/
 
@@ -68,7 +68,7 @@ pointer (ListOf (Point)) (createpoints) (void)
 }
 
 /*──────────────────────────────────────────────────────────────────────────────┐
-│                    display the list of ten points in order                    │
+│                   displays the list of ten points in order                    │
 └──────────────────────────────────────────────────────────────────────────────*/
 
 int (main) (void)
