@@ -27,15 +27,17 @@
 #define ListOf(_type_)                                                          \
     struct Head                                                                 \
     {                                                                           \
-        Join super;                                                             \
+        Join   super;                                                           \
         size_t count;                                                           \
                                                                                 \
-        struct Node                                                             \
-        {                                                                       \
-            Join super;                                                         \
-            typeof (_type_) data;                                               \
-        }                                                                       \
-            *iterator;                                                          \
+        pointer                                                                 \
+            (                                                                   \
+            struct Node                                                         \
+            {                                                                   \
+                Join super;                                                     \
+                typeof (_type_) data;                                           \
+            }                                                                   \
+            )   iterator;                                                       \
                                                                                 \
         method (void                  (pointer (struct Head))) reset;           \
         method (pointer (struct Node) (pointer (struct Head))) forward;         \
