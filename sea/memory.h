@@ -25,7 +25,7 @@
 │                scoped handler of one dimension dynamic memory                 │
 └──────────────────────────────────────────────────────────────────────────────*/
 
-#define dynamic                                                                 \
+#define destroyed                                                               \
     scoped (destroy) inferred
 
 /*──────────────────────────────────────────────────────────────────────────────┐

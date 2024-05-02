@@ -97,7 +97,7 @@
     instance->append = routine (pointer (Node), (pointer (Head) head)           \
     {                                                                           \
         assert (head);                                                          \
-        inferred node = allocate(Node);                                         \
+        inferred node = allocate (Node);                                        \
         if (head->count)                        {                               \
             setfrom (      node , from (head));                                 \
             setto   (from (head), node       ); }                               \
@@ -111,7 +111,7 @@
     instance->prepend = routine (pointer (Node), (pointer (Head) head)          \
     {                                                                           \
         assert (head);                                                          \
-        inferred node = allocate(Node);                                         \
+        inferred node = allocate (Node);                                        \
         if (head->count)                    {                                   \
             setto   (    node , to (head));                                     \
             setfrom (to (head), node     ); }                                   \
@@ -151,7 +151,7 @@
 │                           scoped handler of a list                            │
 └──────────────────────────────────────────────────────────────────────────────*/
 
-#define list scoped(destroylist) inferred
+#define list scoped (destroylist) inferred
 
 static inline
 void (destroylist) (pointer (void) p)
@@ -164,5 +164,5 @@ void (destroylist) (pointer (void) p)
         mark = *head, *head = NULL;
 
     while (mark)
-        next = to (mark), free(mark), mark = next;
+        next = to (mark), free (mark), mark = next;
 }
