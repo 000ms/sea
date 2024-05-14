@@ -60,7 +60,7 @@ pointer (ListOf (Point)) (createpoints) (void)
 
     for (int i = 10; i --> 0;)
     {
-        inferred point = invoke (points, prepend);
+        inferred point = self (points, prepend);
         (*point).data.x = (*point).data.y = i;
     }
 
@@ -75,9 +75,9 @@ int (main) (void)
 {
     list points = createpoints ();
 
-    for (inferred next = invoke (points, forward);
+    for (inferred next = self (points, forward);
                   next;
-                  next = invoke (points, forward))
+                  next = self (points, forward))
         printf ("(%i, %i) ", (*next).data.x, (*next).data.y);
 
     printf ("\n");
