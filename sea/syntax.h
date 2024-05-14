@@ -81,5 +81,5 @@
     (sizeof (_array_) / sizeof (0 [_array_]));                                  \
 })
 
-#define invoke(_object_, _method_, ...)                                         \
+#define self(_object_, _method_, ...)                                           \
     (_object_->_method_ (_object_, ##__VA_ARGS__))
