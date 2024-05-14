@@ -38,13 +38,13 @@
 #   define method(_prototype_)                                                  \
         typeof (typeof (_prototype_) ^)
 
-#   define routine(_return_, _body_)                                            \
+#   define lambda(_return_, _body_)                                             \
         (^ typeof (_return_) _body_)
 #else
 #   define method(_prototype_)                                                  \
         typeof (typeof (_prototype_) *)
 
-#   define routine(_return_, _body_)                                            \
+#   define lambda(_return_, _body_)                                             \
         ({typeof (_return_) _ _body_ _;})
 #endif
 
@@ -66,19 +66,19 @@
     typeof (typeof (_type_) *)
 
 #define array(_type_, _size_)                                                   \
-    typeof (typeof (_type_)[_size_])
+    typeof (typeof (_type_) [_size_])
 
-#define indexmax(_array_)                                                       \
+#define arraylast(_array_)                                                      \
     (arraysize (_array_) - 1)
 
 #define arraysize(_array_)                                                      \
 ({                                                                              \
     static_assert                                                               \
         (not __builtin_types_compatible_p                                       \
-                (typeof (_array_), typeof (&_array_[0]))                        \
+                (typeof (_array_), typeof (&0 [_array_]))                       \
         , "TIP : use pointer to array to prevent array decay"                   \
         );                                                                      \
-    (sizeof (_array_) / sizeof (_array_[0]));                                   \
+    (sizeof (_array_) / sizeof (0 [_array_]));                                  \
 })
 
 #define invoke(_object_, _method_, ...)                                         \

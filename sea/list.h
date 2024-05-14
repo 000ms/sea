@@ -70,13 +70,13 @@
     typedef typeof (*head)           Head;                                      \
     typedef typeof (*head->iterator) Node;                                      \
                                                                                 \
-    instance->reset = routine (void, (pointer (Head) head)                      \
+    head->reset = lambda (void, (pointer (Head) head)                           \
     {                                                                           \
         assert (head);                                                          \
         head->iterator = NULL;                                                  \
     });                                                                         \
                                                                                 \
-    instance->forward = routine (pointer (Node), (pointer (Head) head)          \
+    head->forward = lambda (pointer (Node), (pointer (Head) head)               \
     {                                                                           \
         assert (head);                                                          \
         if (head->iterator)                                                     \
@@ -85,7 +85,7 @@
         return  head->iterator;                                                 \
     });                                                                         \
                                                                                 \
-    instance->backward = routine (pointer (Node), (pointer (Head) head)         \
+    head->backward = lambda (pointer (Node), (pointer (Head) head)              \
     {                                                                           \
         assert (head);                                                          \
         if (head->iterator)                                                     \
@@ -94,7 +94,7 @@
         return  head->iterator;                                                 \
     });                                                                         \
                                                                                 \
-    instance->append = routine (pointer (Node), (pointer (Head) head)           \
+    head->append = lambda (pointer (Node), (pointer (Head) head)                \
     {                                                                           \
         assert (head);                                                          \
         inferred node = allocate (Node);                                        \
@@ -108,7 +108,7 @@
         return node;                                                            \
     });                                                                         \
                                                                                 \
-    instance->prepend = routine (pointer (Node), (pointer (Head) head)          \
+    head->prepend = lambda (pointer (Node), (pointer (Head) head)               \
     {                                                                           \
         assert (head);                                                          \
         inferred node = allocate (Node);                                        \
@@ -122,7 +122,7 @@
         return node;                                                            \
     });                                                                         \
                                                                                 \
-    instance->extract = routine (pointer (Node), (pointer (Head) head)          \
+    head->extract = lambda (pointer (Node), (pointer (Head) head)               \
     {                                                                           \
         assert (head);                                                          \
         inferred it = head->iterator;                                           \
@@ -144,7 +144,7 @@
         return it;                                                              \
     });                                                                         \
                                                                                 \
-    instance;                                                                   \
+    head;                                                                       \
 })
 
 /*──────────────────────────────────────────────────────────────────────────────┐
