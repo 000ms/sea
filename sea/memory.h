@@ -48,10 +48,9 @@
     (destroy (&_pointer_))
 
 /*─────────────────────────────────────────────────────────────────────────────┐
- PRIVATE
-    allocate (size) : allocates (size) bytes zero initialized memory
-    move     (pp)   : reference passing (pointer to pointer)
-    destroy  (pp)   : reference passing (pointer to pointer)
+ allocate (size) : allocates (size) bytes zero initialized memory
+ move     (pp)   : reference passing (pointer to pointer)
+ destroy  (pp)   : reference passing (pointer to pointer)
 └─────────────────────────────────────────────────────────────────────────────*/
 
 static inline

@@ -163,8 +163,7 @@
 #define list scoped (destroylist) inferred
 
 /*─────────────────────────────────────────────────────────────────────────────┐
- PRIVATE
-    destroylist (pp) : erases dangling list's address and frees each link
+ destroylist (pp) : erases dangling list's address and frees each link
 └─────────────────────────────────────────────────────────────────────────────*/
 
 static inline
