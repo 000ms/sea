@@ -10,20 +10,6 @@
 #include <sea/list.h>
 #include <stdio.h>
 
-/*─────────────────────────────────────────────────────────────────────────────┐
- types
-    Point
-
- functions
-    createpoints () : creates a list of ten points
-                    , initialized with their respective indexes
-                    , (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)
-
- main
-    sets points = createpoints ()
-    prints points
-└─────────────────────────────────────────────────────────────────────────────*/
-
 typedef struct
 {
     int x;
@@ -31,7 +17,11 @@ typedef struct
 }
     Point;
 
-//──────────────────────────────────────────────────────────────────────────────
+/*─────────────────────────────────────────────────────────────────────────────┐
+ createpoints () : creates a list of ten points
+                 , initialized with their respective indexes
+                 , (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)
+└─────────────────────────────────────────────────────────────────────────────*/
 
 pointer (ListOf (Point)) (createpoints) (void)
 {
@@ -46,7 +36,10 @@ pointer (ListOf (Point)) (createpoints) (void)
     return move (points);
 }
 
-//──────────────────────────────────────────────────────────────────────────────
+/*─────────────────────────────────────────────────────────────────────────────┐
+ sets points = createpoints ()
+ prints points
+└─────────────────────────────────────────────────────────────────────────────*/
 
 int (main) (void)
 {
