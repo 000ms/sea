@@ -1,28 +1,28 @@
-/*──────────────────────────────────────────────────────────────────────────────┐
-│ ISC License                                                                   │
-│                                                                               │
-│ Copyright (c) 2024 Sugiton <https://sugiton.dev>                              │
-│                                                                               │
-│ Permission to use, copy, modify, and/or distribute this software for any      │
-│ purpose with or without fee is hereby granted, provided that the above        │
-│ copyright notice and this permission notice appear in all copies.             │
-│                                                                               │
-│ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH │
-│ REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY   │
-│ AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,  │
-│ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM   │
-│ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR │
-│ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR        │
-│ PERFORMANCE OF THIS SOFTWARE.                                                 │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ ISC License
+
+ Copyright (c) 2024 サイトー <https://zero.ms>
+
+ Permission to use, copy, modify, and/or distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ PERFORMANCE OF THIS SOFTWARE.
+└─────────────────────────────────────────────────────────────────────────────*/
 
 #pragma once
 
 #include <sea/memory.h>
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│                      base type for bi-oriented sequences                      │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ Join : base type for bi-oriented sequences
+└─────────────────────────────────────────────────────────────────────────────*/
 
 typedef struct Join
 {
@@ -31,25 +31,29 @@ typedef struct Join
 }
     Join;
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│                                upcasting masks                                │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ upcasting masks
+    to, from, setto, setfrom
+└─────────────────────────────────────────────────────────────────────────────*/
 
-#define to(_origin_)                                                            \
+#define to(_origin_)                                                           \
     (to ((pointer (Join))_origin_))
 
-#define from(_origin_)                                                          \
+#define from(_origin_)                                                         \
     (from ((pointer (Join))_origin_))
 
-#define setto(_origin_, _target_)                                               \
+#define setto(_origin_, _target_)                                              \
     (setto ((pointer (Join))_origin_, (pointer (Join))_target_))
 
-#define setfrom(_origin_, _target_)                                             \
+#define setfrom(_origin_, _target_)                                            \
     (setfrom ((pointer (Join))_origin_, (pointer (Join))_target_))
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│                                   functions                                   │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ to      (self)         : gets self.to
+ from    (self)         : gets self.from
+ setto   (self, target) : sets self.to   = target
+ setfrom (self, target) : sets self.from = target
+└─────────────────────────────────────────────────────────────────────────────*/
 
 static inline
 pointer (Join) (to) (pointer (Join) origin)

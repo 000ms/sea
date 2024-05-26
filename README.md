@@ -26,21 +26,31 @@ Templates are a powerful C++ feature that allow for the creation of flexible, re
 ## Example
 
 ```c
-/*──────────────────────────────────────────────────────────────────────────────┐
-│ ISO C                                                                         │
-│   Lists are giving responsability to the user to cast the data                │
-│   into the appropriate type and to free the memory.                           │
-│                                                                               │
-│ GNU C                                                                         │
-│   Lists are scoped and typed.                                                 │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ ISO C
+   Lists are giving responsability to the user to cast the data
+   into the appropriate type and to free the memory.
+
+ GNU C
+   Lists are scoped and typed.
+└─────────────────────────────────────────────────────────────────────────────*/
 
 #include <sea/list.h>
 #include <stdio.h>
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│                             a two dimension point                             │
-└──────────────────────────────────────────────────────────────────────────────*/
+/*─────────────────────────────────────────────────────────────────────────────┐
+ types
+    Point
+
+ functions
+    createpoints () : creates a list of ten points
+                    , initialized with their respective indexes
+                    , (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)
+
+ main
+    sets points = createpoints ()
+    prints points
+└─────────────────────────────────────────────────────────────────────────────*/
 
 typedef struct
 {
@@ -49,10 +59,7 @@ typedef struct
 }
     Point;
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│    creates a list of ten points initialized with their respective indexes     │
-│                    (0, 0) <-> (1, 1) ... (8, 8) <-> (9, 9)                    │
-└──────────────────────────────────────────────────────────────────────────────*/
+//──────────────────────────────────────────────────────────────────────────────
 
 pointer (ListOf (Point)) (createpoints) (void)
 {
@@ -67,9 +74,7 @@ pointer (ListOf (Point)) (createpoints) (void)
     return move (points);
 }
 
-/*──────────────────────────────────────────────────────────────────────────────┐
-│                   displays the list of ten points in order                    │
-└──────────────────────────────────────────────────────────────────────────────*/
+//──────────────────────────────────────────────────────────────────────────────
 
 int (main) (void)
 {
